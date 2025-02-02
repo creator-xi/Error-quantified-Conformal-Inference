@@ -1,0 +1,77 @@
+real: True
+quantiles_given: False
+multiple_series: False 
+T_burnin: 500 
+alpha: 0.1
+seasonal_period: 365
+score_function_name: "signed-residual"
+sequences:
+  0:
+    dataset: "daily-climate"
+    fit_every: 1 
+    log: False
+    model_names: 
+      # - "transformer"
+      - "prophet"
+      - "ar"
+      - "theta"
+    overwrite: False 
+methods:
+  ACI:
+    lrs:
+      - 0.1
+      - 0.05
+      - 0.01
+      - 0.005
+    window_length: 10000000 
+  OGD:
+    lrs:
+      - 10
+      - 5
+      - 1
+      - 0.5
+    steps_ahead: 1
+  SF_OGD:
+    lrs:
+      - 100
+      - 50
+      - 10
+      - 5
+    steps_ahead: 1
+  decay_OGD:
+    lrs:
+      - 200
+      - 100
+      - 20
+      - 10
+    steps_ahead: 1
+  Quantile+Integrator (log)+Scorecaster:
+    lrs:
+      - 1 
+      - 0.5 
+      - 0.1
+      - 0.05
+    Csat: 5
+    KI: 10
+    steps_ahead: 1
+  ECI:
+    lrs:
+      - 1 
+      - 0.5 
+      - 0.1
+      - 0.05
+    steps_ahead: 1
+  ECI_cutoff:
+    lrs:
+      - 1 
+      - 0.5 
+      - 0.1
+      - 0.05
+    steps_ahead: 1
+  ECI_integral:
+    lrs:
+      - 1 
+      - 0.5 
+      - 0.1
+      - 0.05
+    steps_ahead: 1
